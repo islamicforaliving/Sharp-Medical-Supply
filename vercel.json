@@ -1,6 +1,16 @@
 {
   "version": 2,
-  "buildCommand": "next build",
-  "outputDirectory": "dist",
-  "framework": "nextjs"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/$1.html" }
+  ]
 }
